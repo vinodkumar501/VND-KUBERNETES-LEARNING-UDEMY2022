@@ -1,0 +1,24 @@
+create a deployments shortcut instead of writing all details 
+
+--->kubectl create deployment helloworld-deployment --image busybox --port=8000 -o yaml --dry-run
+
+CREATE SVC USING SHORTFORM
+
+https://stackoverflow.com/questions/64906712/how-to-create-a-kubernetes-service-yaml-file-without-dry-run
+
+#kubectl expose [pod/deployment/replicaset] [name-of-pod/deployment/replicaset]  --port=80 --target-port=8000 --dry-run=client -o yaml
+
+#kubectl expose pod nginx  --port=80 --target-port=8000 --dry-run=client -o yaml 
+
+--->kubectl expose deployment helloworld-deployment --port=80 --target-port=8000 --dry-run=client -o yaml 
+
+
+=======================================================================================================
+--->kubectl create deployment helloworld-deployment --image busybox --port=8000 -o yaml --dry-run
+--->kubectl expose deployment helloworld-deployment --port=80 --target-port=8000 --dry-run=client -o yaml 
+
+
+-->kubectl create deploy liveness-probe --image nginx --port=80  -o yaml --dry-run >> liveness.yml
+
+http://www.yamllint.com/
+https://stackoverflow.com/questions/25221214/jekyll-ymal-nested-list-throws-error-found-a-tab-character-that-violate-intenda
