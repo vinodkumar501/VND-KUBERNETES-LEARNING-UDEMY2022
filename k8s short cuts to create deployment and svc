@@ -22,3 +22,10 @@ https://stackoverflow.com/questions/64906712/how-to-create-a-kubernetes-service-
 
 http://www.yamllint.com/
 https://stackoverflow.com/questions/25221214/jekyll-ymal-nested-list-throws-error-found-a-tab-character-that-violate-intenda
+
+================================== SECRETES ==========================
+
+echo -n "root" > ./username.txt
+$ echo -n "password" > ./password.txt
+$ kubectl create secret generic db-user-pass --from-file=./username.txt —from-file=./password.txt
+secret "db-user-pass" create
