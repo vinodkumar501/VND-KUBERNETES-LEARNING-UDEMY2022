@@ -46,6 +46,18 @@ mysql> SHOW TABLES;
 mysql> select * from visits
 
 
+======================================== Error ==========================================
+database                               0/1     CrashLoopBackOff    3          61s
 
+
+kubectl logs database
+2022-01-21 08:55:56+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.36-1debian10 started.
+2022-01-21 08:55:56+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2022-01-21 08:55:56+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.36-1debian10 started.
+2022-01-21 08:55:56+00:00 [ERROR] [Entrypoint]: Database is uninitialized and password option is not specified
+    You need to specify one of the following:
+    - MYSQL_ROOT_PASSWORD
+    - MYSQL_ALLOW_EMPTY_PASSWORD
+    - MYSQL_RANDOM_ROOT_PASSWORD
 
 
