@@ -15,7 +15,7 @@ spec:
       containers:
       - name: k8s-demo
         image: wardviaene/k8s-demo
-        command: ["node", "index-db.js"]
+        command: ["node", "index-db.js"]         #http://34.145.29.65:3000/ this creates an entry in database for checking pod network from one pod to other pod.
         ports:
         - name: nodejs-port
           containerPort: 3000
