@@ -8,4 +8,6 @@ spec:
     protocol: TCP
   selector:
     app: database
-  type: NodePort
+  #type: NodePort
+  #default its as clusterIP 
+  #db should not expose to external world
