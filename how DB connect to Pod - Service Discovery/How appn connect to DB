@@ -1,6 +1,8 @@
 kubectl exec -it database -- mysql -u root -p
 Enter password: password
 
+mentioned MYSQL_ROOT_PASSWORD as "password"
+
 https://github.com/vinodkumar501/vnbd-kubernetes-itrack-learning-2022/blob/main/how%20DB%20connect%20to%20Pod%20-%20Service%20Discovery/secret.yml
 
 mysql> SHOW DATABASES;                         # creates db helloworld       
