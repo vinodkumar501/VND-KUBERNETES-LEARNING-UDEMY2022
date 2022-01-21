@@ -23,13 +23,13 @@ spec:
         #https://dev.mysql.com/doc/refman/5.7/en/environment-variables.html
           - name: MYSQL_HOST                                      # connect to db svc of database-svc create for mysql svc
             value: database-service 
-          - name: MYSQL_USER                                      # create user and password assign and isntall db name as database ( helloworld)
+          - name: MYSQL_USER                               # create user and password assign and isntall db name as database ( helloworld)
             value: root 
           - name: MYSQL_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: helloworld-secrets
-                key: rootPassword
+                key: password        #rootPassword
           - name: MYSQL_DATABASE
             valueFrom:
               secretKeyRef:
