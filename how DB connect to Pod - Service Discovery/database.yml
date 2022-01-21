@@ -16,9 +16,9 @@ spec:
     env:
       - name: MYSQL_ROOT_PASSWORD
         valueFrom:
-          secretKeyRef:
-            name: helloworld-secrets
-            key: rootPassword
+         secretKeyRef:
+          name: helloworld-secrets
+          key: password
       - name: MYSQL_USER
         valueFrom:
           secretKeyRef:
