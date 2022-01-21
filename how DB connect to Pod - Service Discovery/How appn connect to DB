@@ -53,6 +53,41 @@ kubectl logs helloworld-deployment-8cdd6879f-7982v
 Example app listening at http://:::3000
 Connection to db established
 
+
+if you want to check pod to pod communication or your pod is able to accept requests from outside using
+
+run busybox ( default nslookup present)
+
+kubectl run -it busybox --image=busybox
+
+If you don't see a command prompt, try pressing enter.
+/ # nslookup
+BusyBox v1.34.1 (2021-12-29 21:12:15 UTC) multi-call binary.
+
+Usage: nslookup [-type=QUERY_TYPE] [-debug] HOST [DNS_SERVER]
+
+Query DNS about HOST
+
+QUERY_TYPE: soa,ns,a,aaaa,cname,mx,txt,ptr,srv,any
+
+____________________________________________________________
+
+/ # nslookup database-service
+Server:         10.63.240.10
+Address:        10.63.240.10:53
+
+Name:   database-service.default.svc.cluster.local
+Address: 10.63.251.59
+
+/ # nslookup helloworld-db-service
+Server:         10.63.240.10
+Address:        10.63.240.10:53
+
+Name:   helloworld-db-service.default.svc.cluster.local
+Address: 10.63.240.43
+
+
+
 =================== application using mysql and store data on mysql or not using below ===================================
 http://35.199.158.85:3000/
 Hello World! You are visitor number 5
