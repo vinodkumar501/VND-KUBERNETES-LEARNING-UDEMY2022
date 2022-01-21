@@ -28,16 +28,24 @@ mysql> SHOW TABLES;
 +----------------------+
 1 row in set (0.00 sec)
 
+NOTE:
+ecah and evey hit appn of helloworld svc over browser it  will store data in to the database "helloworld" table visit
+
 mysql> select * from visits;
 
+mysql> select * from visits;
 +----+---------------+
 | id | ts            |
 +----+---------------+
 |  1 | 1642755865418 |
 |  2 | 1642755866586 |
 |  3 | 1642755936149 |
+|  4 | 1642756395557 |
+|  5 | 1642756397347 |
+|  6 | 1642756399586 |
+|  7 | 1642756400263 |
 +----+---------------+
-3 rows in set (0.00 sec)
+7 rows in set (0.00 sec)
 
 # connect establish or not check pod with mysql 
 
