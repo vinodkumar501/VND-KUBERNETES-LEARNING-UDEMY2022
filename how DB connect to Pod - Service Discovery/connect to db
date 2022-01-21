@@ -1,0 +1,51 @@
+kubectl exec -it database -- mysql -u root -p
+Enter password: rootPassword
+
+https://github.com/vinodkumar501/vnbd-kubernetes-itrack-learning-2022/blob/main/how%20DB%20connect%20to%20Pod%20-%20Service%20Discovery/secret.yml
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| helloworld         |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> USE helloworld;
+Database changed
+
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+visits
+
+mysql> select * from visits
+
+
+# connect establish or not check pod with mysql 
+
+kubectl logs helloworld-deployment-8cdd6879f-7982v
+Example app listening at http://:::3000
+Connection to db established
+
+
+http://35.199.158.85:3000/
+Hello World! You are visitor number 5
+
+ecah and evey hit appn will store data in to the database "helloworld"
+
+mysql> USE helloworld;
+Database changed
+
+mysql> SHOW TABLES;
+
+
+mysql> select * from visits
+
+
+
+
+
