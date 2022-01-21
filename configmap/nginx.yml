@@ -1,3 +1,4 @@
+#Deployment have 2 pods and added configmap once you hit nginx it redirect to jenkins from reverseproxy
 apiVersion: v1
 kind: Pod
 metadata:
