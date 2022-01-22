@@ -1,3 +1,8 @@
 kubectl get ing
 NAME               CLASS    HOSTS                                                 ADDRESS   PORTS   AGE
 helloworld-rules   <none>   helloworld-v1.example.com,helloworld-v2.example.com             80      7s
+
+
+Ingress :
+LB redirect traffic to available host
+If you dont want to run appn over ELB or external lb use Ingress
