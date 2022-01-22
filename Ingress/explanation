@@ -1,0 +1,3 @@
+kubectl get ing
+NAME               CLASS    HOSTS                                                 ADDRESS   PORTS   AGE
+helloworld-rules   <none>   helloworld-v1.example.com,helloworld-v2.example.com             80      7s
