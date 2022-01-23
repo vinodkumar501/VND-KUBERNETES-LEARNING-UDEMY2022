@@ -6,4 +6,4 @@ metadata:
 provisioner: kubernetes.io/gce-pd
 parameters:
   type: gp2
-  zone: eu-west-1a
+  zone: eu-west-1a                        # zone where k8s svc is running
