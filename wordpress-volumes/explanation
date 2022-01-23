@@ -1,0 +1,4 @@
+If you have db as pvc it stores and saves data even if we delete po and new pod have data of login 
+
+Ex: create a wordpress user and login and once delete a pod and check still you get able to access your credentials of wordpress
+means it stores data in db
