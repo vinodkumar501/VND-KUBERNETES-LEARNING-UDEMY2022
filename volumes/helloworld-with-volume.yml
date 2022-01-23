@@ -25,3 +25,5 @@ spec:
       - name: myvolume
         awsElasticBlockStore:
           volumeID: # insert AWS EBS volumeID here
+       #persistentVolumeClaim:
+       #  claimName: volume-claim        #use this if you are not using EBS volume
