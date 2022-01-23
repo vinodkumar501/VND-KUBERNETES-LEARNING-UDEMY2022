@@ -12,4 +12,12 @@ https://stackoverflow.com/questions/60533371/how-to-mount-a-persistent-volume-on
 make sure your volume in same zregion of your k8s cluster
 
 
+Once test to drain a node 
+
+According to the Kubernetes documentation the drain command can be used to “safely evict all of your pods from a node before you perform maintenance on the node,” and “safe evictions allow the pod's containers to gracefully terminate and will respect the PodDisruptionBudgets you have specified”.
+
+Even if node has issue then that pod will place on another node and use same pvc attached to it ( stateful app using pv ) 
+
+
+
 
