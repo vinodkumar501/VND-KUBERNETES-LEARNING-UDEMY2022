@@ -27,3 +27,5 @@ spec:
           volumeID: # insert AWS EBS volumeID here
        #persistentVolumeClaim:
        #  claimName: volume-claim        #use this if you are not using EBS volume
+#https://github.com/vinodkumar501/vnbd-kubernetes-itrack-learning-2022/blob/main/volumes/pvc.yml
+#https://github.com/vinodkumar501/kubernetes-course-itrack-repo-Udemy/blob/master/volumes/helloworld-with-volume.yml
