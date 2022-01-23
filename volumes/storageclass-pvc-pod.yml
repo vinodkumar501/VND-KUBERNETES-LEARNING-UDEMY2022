@@ -1,0 +1,21 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+ name: standard-vnd
+provisioner: kubernetes.io/gce-pd
+parameters:
+ type: gp2
+ zone: us-east-1
+--- 
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: myclaim
+ annotations:
+   volume.kubernetes.io/storage-class: "standard-vnd"
+spec:
+ accessModes:
+ - ReadWriteOnce
+ resources:
+ requests:
+   storage: 2Gi
