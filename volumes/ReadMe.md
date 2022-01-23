@@ -4,5 +4,7 @@ https://kubernetes.io/docs/tasks/configure-pod-container/configure-volume-storag
 
 https://stackoverflow.com/questions/60533371/how-to-mount-a-persistent-volume-on-a-deployment-pod-using-persistentvolumeclaim
 
+make sure your volume in same zregion of your k8s cluster
+
 
 
