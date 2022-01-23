@@ -18,6 +18,15 @@ According to the Kubernetes documentation the drain command can be used to “sa
 
 Even if node has issue then that pod will place on another node and use same pvc attached to it ( stateful app using pv ) 
 
+https://kubernetes.io/docs/concepts/storage/storage-classes/#gce-pd
 
-
-
+GCE PD
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: slow
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
