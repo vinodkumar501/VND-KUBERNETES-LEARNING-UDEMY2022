@@ -28,6 +28,8 @@ spec:
  containers:
  - name: myfrontend
    image: nginx
+   ports:
+    - port: 80
    volumeMounts:
     - mountPath: "/var/www/html"
       name: mypd
@@ -35,3 +37,4 @@ spec:
  - name: mypd
    persistentVolumeClaim:
      claimName: myclaim
+#kubectl expose po mypod  --port=80 --target-port=80 --dry-run=client -o yaml
