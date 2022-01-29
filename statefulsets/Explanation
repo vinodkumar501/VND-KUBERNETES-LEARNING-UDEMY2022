@@ -25,6 +25,7 @@ you should deploy your application using a workload object that provides a set o
 
 https://www.bluematador.com/blog/an-introduction-to-kubernetes-statefulset
 
+======================================== Statefulset ==========================================
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -74,7 +75,20 @@ spec:
   selector:
     app: nginx
           
-=======================
+=============================================================================================================
+->kubectl get po 
+
+web-0                                     1/1     Running   0          9m50s
+web-1                                     1/1     Running   0          10m
+web-2                                     1/1     Running   0          10m
+
+->kubectl get pvc
+
+www-web-0                      Bound   pvc-46418931-1aea-484d-b4e3-a4cbee3777a2   1Gi        RWO            standard       19m
+www-web-1                      Bound   pvc-18b33439-6d68-4f86-8418-0325f279b9d7   1Gi        RWO            standard       19m
+www-web-2                      Bound   pvc-333a49a7-5184-4f78-ba7b-f89f425940af   1Gi        RWO            standard       19m
+
+=============================================================================================================
 The volumeClaimTemplates
 will provide stable storage using PersistentVolumes provisioned by a PersistentVolume Provisioner
 
@@ -87,12 +101,6 @@ spec.minReadySeconds is an optional field that specifies the minimum number of s
 Pod Identity
 StatefulSet Pods have a unique identity that is comprised of an ordinal, a stable network identity,
 and stable storage. The identity sticks to the Pod, regardless of which node it's (re)scheduled on
-
-
-
-
-
-
 
 
 
