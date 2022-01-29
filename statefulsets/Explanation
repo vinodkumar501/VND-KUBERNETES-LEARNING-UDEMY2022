@@ -23,6 +23,7 @@ These pods are created from the same spec, but are not interchangeable: each has
 stable is synonymous with persistence across Pod (re)scheduling. If an application doesn't require any stable identifiers or ordered deployment, deletion, or scaling, 
 you should deploy your application using a workload object that provides a set of stateless replicas. Deployment or ReplicaSet may be better suited to your stateless needs.
 
+https://www.bluematador.com/blog/an-introduction-to-kubernetes-statefulset
 
 apiVersion: v1
 kind: Service
