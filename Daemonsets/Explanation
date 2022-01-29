@@ -1,3 +1,4 @@
+https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
 
 Daemon Sets ensure that every single node in the Kubernetes cluster
 runs the same pod resource
@@ -17,7 +18,7 @@ Typical use cases:
 
 
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
 name: monitoring-agent
