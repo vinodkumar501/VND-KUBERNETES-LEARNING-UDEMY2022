@@ -88,6 +88,14 @@ www-web-0                      Bound   pvc-46418931-1aea-484d-b4e3-a4cbee3777a2 
 www-web-1                      Bound   pvc-18b33439-6d68-4f86-8418-0325f279b9d7   1Gi        RWO            standard       19m
 www-web-2                      Bound   pvc-333a49a7-5184-4f78-ba7b-f89f425940af   1Gi        RWO            standard       19m
 
+
+It creates 3 pods using replicas 3 
+Each and every replica will create a PVC 
+and that pod will store the data inside of PVC 
+
+Once you delete the pod it stores the data still and name as well same.
+
+
 =============================================================================================================
 The volumeClaimTemplates
 will provide stable storage using PersistentVolumes provisioned by a PersistentVolume Provisioner
