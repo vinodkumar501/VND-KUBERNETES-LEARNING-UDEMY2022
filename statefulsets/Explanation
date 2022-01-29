@@ -93,8 +93,7 @@ It creates 3 pods using replicas 3
 Each and every replica will create a PVC 
 and that pod will store the data inside of PVC 
 
-Once you delete the pod it stores the data still and name as well same.
-
+Once you delete the pod it stores the data still and name as well same and it use same pvc as created as part of statefulsets even if you delete po , pvc still exists
 
 =============================================================================================================
 The volumeClaimTemplates
