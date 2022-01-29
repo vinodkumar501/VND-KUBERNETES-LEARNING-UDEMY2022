@@ -25,20 +25,6 @@ you should deploy your application using a workload object that provides a set o
 
 https://www.bluematador.com/blog/an-introduction-to-kubernetes-statefulset
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-  labels:
-    app: nginx
-spec:
-  ports:
-  - port: 80
-    name: web
-  clusterIP: None
-  selector:
-    app: nginx
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -46,16 +32,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx # has to match .spec.template.metadata.labels
+      app: nginx 
   serviceName: "nginx"
-  replicas: 3 # by default is 1
-  minReadySeconds: 10 # by default is 0
+  replicas: 3 
   template:
     metadata:
       labels:
-        app: nginx # has to match .spec.selector.matchLabels
+        app: nginx                                      # has to match .spec.selector.matchLabels
     spec:
-      terminationGracePeriodSeconds: 10
+      #terminationGracePeriodSeconds: 10
       containers:
       - name: nginx
         image: k8s.gcr.io/nginx-slim:0.8
@@ -70,10 +55,24 @@ spec:
       name: www
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "my-storage-class"
+      storageClassName: "standard"
       resources:
         requests:
           storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  type: LoadBalancer
+  selector:
+    app: nginx
           
 =======================
 The volumeClaimTemplates
