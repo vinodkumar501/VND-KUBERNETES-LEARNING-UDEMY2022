@@ -75,11 +75,13 @@ php-apache-d4cf67d68-xd2xr                1/1     Running   0          3m3s
 
 if reaches to 50% of 200m ie 100m it scale a new pod till 10 pods.
 
-php-apache-d4cf67d68-8hlqw                122m         11Mi            
-php-apache-d4cf67d68-cq6g6                75m          11Mi            
-php-apache-d4cf67d68-cx6fv                158m         12Mi            
-php-apache-d4cf67d68-fdtmb                99m          11Mi            
-php-apache-d4cf67d68-pz9zk                147m         11Mi 
+load-generator                            10m          0Mi             
+php-apache-d4cf67d68-8hlqw                111m         11Mi            
+php-apache-d4cf67d68-cq6g6                105m         11Mi            
+php-apache-d4cf67d68-cx6fv                152m         12Mi            
+php-apache-d4cf67d68-fdtmb                79m          11Mi            
+php-apache-d4cf67d68-ljp22                153m         11Mi            
+php-apache-d4cf67d68-pz9zk                98m          11Mi 
 
 
 
