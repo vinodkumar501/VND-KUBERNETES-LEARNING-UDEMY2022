@@ -22,10 +22,10 @@ spec:
         resources:
           requests:
             cpu: 200m
-            memory: 
+            #memory: 
           limits:
             cpu: 500m
-            memory: 
+            #memory: 
 ---
 apiVersion: v1
 kind: Service
@@ -51,3 +51,16 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
+
+
+
+
+
+
+
+
+
+
+
+
+
