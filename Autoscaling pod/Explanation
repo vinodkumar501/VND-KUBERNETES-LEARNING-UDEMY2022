@@ -7,3 +7,9 @@ Autoscaling
 • You introduce auto-scaling at 50% of the CPU usage (which is 100m)
 • Horizontal Pod Autoscaling will increase/descrease pods to maintain a
 target CPU utilization of 50% (or 100m / 10% of a core within this pod)
+
+1vcpu == 1000 millicore cpu
+
+cpu request is 500m == 1/2 of 1 vpcu
+
+cpu 0.5 = 1/2 of 1 vcpu
