@@ -24,3 +24,67 @@ Horizontal scaling means that the response to increased load is to deploy more P
 
 If the load decreases, and the number of Pods is above the configured minimum, the HorizontalPodAutoscaler instructs the workload resource 
 (the Deployment, StatefulSet, or other similar resource) to scale back down.
+
+
+
+#kubectl get hpa
+NAME                     REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+hpa-example-autoscaler   Deployment/php-apache   0%/50%    1         10        1          41s
+
+
+#kubectl get hpa
+NAME                     REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+hpa-example-autoscaler   Deployment/php-apache   0%/50%    1         10        1          41s
+
+
+Increase the load
+
+# Run this in a separate terminal
+# so that the load generation continues and you can carry on with the rest of the steps
+
+->kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+
+->kubectl get hpa hpa-example-autoscaler --watch
+
+kubectl get hpa hpa-example-autoscaler --watch
+NAME                     REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+hpa-example-autoscaler   Deployment/php-apache   0%/50%    1         10        1          12m
+hpa-example-autoscaler   Deployment/php-apache   250%/50%   1         10        1          12m
+hpa-example-autoscaler   Deployment/php-apache   250%/50%   1         10        1          12m
+hpa-example-autoscaler   Deployment/php-apache   250%/50%   1         10        4          13m
+hpa-example-autoscaler   Deployment/php-apache   250%/50%   1         10        6          13m
+hpa-example-autoscaler   Deployment/php-apache   97%/50%    1         10        6          13m
+hpa-example-autoscaler   Deployment/php-apache   54%/50%    1         10        6          13m
+hpa-example-autoscaler   Deployment/php-apache   53%/50%    1         10        6          14m
+
+hpa-example-autoscaler   Deployment/php-apache   52%/50%    1         10        6          15m
+hpa-example-autoscaler   Deployment/php-apache   54%/50%    1         10        6          15m
+hpa-example-autoscaler   Deployment/php-apache   51%/50%    1         10        6          16m
+
+
+->kubectl get po
+
+php-apache-d4cf67d68-54k4s                1/1     Running   0          3m19s
+php-apache-d4cf67d68-9m7gd                1/1     Running   0          3m3s
+php-apache-d4cf67d68-cx6fv                1/1     Running   0          19m
+php-apache-d4cf67d68-fdtmb                1/1     Running   0          3m19s
+php-apache-d4cf67d68-fhfsf                1/1     Running   0          3m19s
+php-apache-d4cf67d68-xd2xr                1/1     Running   0          3m3s
+
+->kubectl top po
+
+if reaches to 50% of 200m ie 100m it scale a new pod till 10 pods.
+
+php-apache-d4cf67d68-8hlqw                122m         11Mi            
+php-apache-d4cf67d68-cq6g6                75m          11Mi            
+php-apache-d4cf67d68-cx6fv                158m         12Mi            
+php-apache-d4cf67d68-fdtmb                99m          11Mi            
+php-apache-d4cf67d68-pz9zk                147m         11Mi 
+
+
+
+
+
+
+
+
