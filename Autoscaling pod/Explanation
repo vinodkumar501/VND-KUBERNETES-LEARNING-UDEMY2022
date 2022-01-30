@@ -13,3 +13,14 @@ target CPU utilization of 50% (or 100m / 10% of a core within this pod)
 cpu request is 500m == 1/2 of 1 vpcu
 
 cpu 0.5 = 1/2 of 1 vcpu
+
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+
+A HorizontalPodAutoscaler (HPA for short) automatically updates a workload resource (such as a Deployment or StatefulSet), 
+with the aim of automatically scaling the workload to match demand.
+
+Horizontal scaling means that the response to increased load is to deploy more Pods. This is different from vertical scaling, which for Kubernetes would mean assigning more resources 
+(for example: memory or CPU) to the Pods that are already running for the workload.
+
+If the load decreases, and the number of Pods is above the configured minimum, the HorizontalPodAutoscaler instructs the workload resource 
+(the Deployment, StatefulSet, or other similar resource) to scale back down.
