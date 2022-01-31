@@ -1,4 +1,5 @@
 #https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+#https://www.youtube.com/watch?v=3BnrXapY7zo
 
 apiVersion: apps/v1
 kind: Deployment
