@@ -102,6 +102,9 @@ NAME                     REFERENCE               TARGETS   MINPODS   MAXPODS   R
 hpa-example-autoscaler   Deployment/php-apache   42%/50%   1         10        8          26m
 
 
+-> kubectl get rs
 
+->https://www.youtube.com/watch?v=3BnrXapY7zo
 
+after 5 minutes if theres is no load it redirect to back to 1 pod
 
