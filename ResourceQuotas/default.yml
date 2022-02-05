@@ -1,0 +1,16 @@
+#https://kubernetes.io/docs/concepts/policy/limit-range/
+
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: limits
+  namespace: myspace
+spec:
+  limits:
+  - default:
+      cpu: 200m
+      memory: 512Mi
+    defaultRequest:
+      cpu: 100m
+      memory: 256Mi
+    type: Container
