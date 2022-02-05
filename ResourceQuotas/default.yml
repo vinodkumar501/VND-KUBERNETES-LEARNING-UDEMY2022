@@ -1,4 +1,5 @@
 #https://kubernetes.io/docs/concepts/policy/limit-range/
+#https://kubernetes.io/docs/concepts/policy/resource-quotas/
 
 apiVersion: v1
 kind: LimitRange
