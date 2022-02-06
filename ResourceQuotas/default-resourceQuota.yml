@@ -59,6 +59,13 @@ helloworld-deployment   3/3     3            3           12s
 Pod will take default values, no need to specify quota's
           
           
+# kubectl describe limits limits --namespace myspace
+Name:       limits
+Namespace:  myspace
+Type        Resource  Min  Max  Default Request  Default Limit  Max Limit/Request Ratio
+----        --------  ---  ---  ---------------  -------------  -----------------------
+Container   cpu       -    -    100m             200m           -
+Container   memory    -    -    256Mi            512Mi          -      
           
           
           
