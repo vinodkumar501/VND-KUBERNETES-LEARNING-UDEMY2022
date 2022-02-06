@@ -80,8 +80,8 @@ roleRef:
 
 -->
 If you rather want to create a role that spans all namespaces, you can use
-
-###### ClusterRole #####
+ 
+###### ClusterRole ##### here no need to specify namespace , because cluster role applies to all namespaces
 
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
