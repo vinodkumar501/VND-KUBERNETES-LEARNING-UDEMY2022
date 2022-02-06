@@ -1,6 +1,14 @@
 #https://kubernetes.io/docs/concepts/policy/limit-range/
 #https://kubernetes.io/docs/concepts/policy/resource-quotas/
 
+#kubectl create ns myspace 
+or
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: myspace
+---
 apiVersion: v1
 kind: LimitRange
 metadata:
@@ -40,9 +48,15 @@ spec:
           containerPort: 3000
           
           
-  # here this may work be work because we mentioned resorucequotas as default for namespace
+# here this may work be work because we mentioned resorucequotas as default for namespace
   so no need to mention it in deployment to use resource , it will take default values , if you mention it take those otherwise it will not fail, just it takes the default 
   valus of cpu and memory
+  
+#kubectl get deploy --namespace myspace
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+helloworld-deployment   3/3     3            3           12s
+
+Pod will take default values, no need to specify quota's
           
           
           
