@@ -5,7 +5,7 @@ metadata:
   namespace: default
   name: pod-writer
 rules:
-- apiGroups: [""]
+- apiGroups: [""]                                    #[""] --> main apigroup
   resources: ["pods"]
   verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
 - apiGroups: ["extensions", "apps"]
