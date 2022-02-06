@@ -59,7 +59,25 @@ services.loadbalancer total number of load balancers that can exist in a namespa
 services.nodeports total number of nodeports that can exist in a namespace
 secrets total number of secrets that can exist in a namespace
 
+=====================================================================
 
+kubectl describe ns vnd
+Name:         vnd
+Labels:       kubernetes.io/metadata.name=vnd
+Annotations:  <none>
+Status:       Active
+
+Resource Quotas
+  Name:                              gke-resource-quotas
+  Resource                           Used  Hard
+  --------                           ---   ---
+  count/ingresses.extensions         0     5k
+  count/ingresses.networking.k8s.io  0     5k
+  count/jobs.batch                   0     10k
+  pods                               4     5k
+  services                           0     1500
+
+No LimitRange resource.
 
 
 
