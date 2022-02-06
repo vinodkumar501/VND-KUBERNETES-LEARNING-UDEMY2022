@@ -112,10 +112,80 @@ requests.memory=1Gi
 
 Here its failed to create new pod (3rd) because we have provided to use namespace of (myspace) 
 
+Under namespace
+
     requests.cpu: "1"
     requests.memory: 1Gi
     limits.cpu: "2"
     limits.memory: 2Gi
+
+
+Under deployment (3 replicas -> 3pods)
+
+          requests:
+            cpu: 200m
+            memory: 0.5Gi
+          limits:
+            cpu: 400m
+            memory: 1Gi
+
+#CHECK QUOTA
+
+#kubectl get quota --namespace myspace
+
+NAME                  AGE     REQUEST                                                                                                                                   LIMIT
+compute-quota         7m25s   requests.cpu: 400m/1, requests.memory: 1Gi/1Gi                                                                                            limits.cpu: 800m/2, limits.memory: 2Gi/2Gi
+gke-resource-quotas   7m25s   count/ingresses.extensions: 0/5k, count/ingresses.networking.k8s.io: 0/5k, count/jobs.batch: 0/10k, pods: 2/5k, services: 0/1500          
+object-quota          7m24s   configmaps: 1/10, persistentvolumeclaims: 0/4, replicationcontrollers: 0/20, secrets: 1/10, services: 0/10, services.loadbalancers: 0/2   
+
+
+#kubectl describe quota compute-quota --namespace myspace
+
+Name:            compute-quota
+Namespace:       myspace
+Resource         Used  Hard
+--------         ----  ----
+limits.cpu       800m  2
+limits.memory    2Gi   2Gi
+requests.cpu     400m  1
+requests.memory  1Gi   1Gi
+
+Its failed beacuse 
+
+we have 3 pods 
+each pod requests 
+
+CPU
+requests: 200m cpu (200*3=600m)
+limits: 400m cpu (400*3=1200m)
+
+Memory
+requests: 0.5Gi (0.5*3=1.5Gi)
+limits: 1Gi (1*3=3Gi)
+
+
+Here 2 pods will create , and namespace also allow the 2 pods because namespace has save data for pod upto limits of pod
+
+ex: pod request is 200m cpu ---> it has upto limit of what we mentioned it will not use to others 
+
+so using 
+limits: 400m cpu (400*3=1200m)
+limits: 1Gi (1*3=3Gi)
+
+
+But we have mentioned to use namespace of "myspace"
+   # requests.cpu: "1"
+   # requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+    
+Here we are exceeding memory so if we change memory it will deploy as 3rd replica
+
+
+
+
+
+
 
 
 
