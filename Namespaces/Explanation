@@ -1,0 +1,81 @@
+Namespaces allow you to create virtual clusters within the same physical
+cluster
+• Namespaces logically separates your cluster
+• The standard namespace is called “default” and that’s where all
+resources are launched in by default
+• There is also namespace for kubernetes specific resources, called
+kube-system
+• Namespaces are intended when you have multiple teams / projects
+using the Kubernetes cluster
+
+->
+The name of resources need to be unique within a namespace, but not
+across namespaces
+• e.g. you can have the deployment “helloworld” multiple times in
+different namespaces, but not twice in one namespace
+• You can divide resources of a Kubernetes cluster using namespaces
+• You can limit resources on a per namespace basis
+• e.g. the marketing team can only use a maximum of 10 GiB of memory,
+2 loadbalancers, 2 CPU cores
+
+->
+First you need to create a new namespace
+$ kubectl create namespace myspace
+$ kubectl get namespaces
+NAME LABELS STATUS
+default <none> Active
+kube-system <none> Active
+myspace <none> Active
+
+You can set a default namespace to launch resources in
+
+$ export CONTEXT=$(kubectl config view | awk '/current-context/ {print $2}’)
+$ kubectl config set-context $CONTEXT —namespace=myspace
+
+You can then create resource limits within that namespace:
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+name: compute-resources
+namespace: myspace
+spec:
+hard:
+requests.cpu: "1"
+requests.memory: 1Gi
+limits.cpu: "2"
+limits.memory: 2Gi
+
+-->
+You can also create object limits:
+
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+name: object-counts
+namespace: myspace
+spec:
+hard:
+configmaps: "10"
+persistentvolumeclaims: "4"
+replicationcontrollers: "20"
+secrets: "10"
+services: "10"
+services.loadbalancers: "2"
+
+
+
+• Note: All those quota limits are in absolute numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
