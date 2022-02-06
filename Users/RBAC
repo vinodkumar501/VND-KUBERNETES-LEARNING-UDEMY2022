@@ -57,12 +57,12 @@ metadata:
   namespace: default
   name: pod-reader
 rules:
-- apiGroups: [""]
+- apiGroups: [""]                  # "" --> main apigroup
   resources: [“pods”, “secrets”]
   verbs: ["get", "watch", "list"]
 
 -->
-Next step is to assign users to the newly created role
+Next step is to assign users to the newly created role and bind role to the user
 
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -100,7 +100,7 @@ ClusterRoleBinding
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-name: read-pods
+  name: read-pods
 subjects:
 - kind: User
   name: alice
