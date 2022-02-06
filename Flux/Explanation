@@ -1,0 +1,17 @@
+https://www.youtube.com/watch?v=OFgziggbCOg
+
+Flux automates the deployment of containers to Kubernetes
+• It can synchronise your version control (git) and your Kubernetes cluster
+• With flux, you can put manifest files (your kubernetes yaml files) within
+your git repository
+• Flux will monitor this repository and make sure that what’s in the manifest
+files is deployed to the cluster
+• Flux also has interesting features where it can automatically upgrade your
+containers to the latest version available within your docker repository (it
+uses semantic versioning for that - e.g. “~1.0.0”)
+
+Flux has joined the CNCF - Cloud Native Computing Foundation
+• They believe in GitOps (from github.com/fluxcd/flux):
+• You declaratively describe the entire desired state of your system in git
+• What can be described can be automated
+• You push code not containers
