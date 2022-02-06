@@ -1,0 +1,13 @@
+pod-security-policies enables you to control the security aspects of pod creation and updates
+
+eg:
+deny using privileged modes in pods
+control what volumes can be mounted.
+make sure the contianer can only run in the gid/uid range, or container cannot run as root
+
+pod-security-policies:
+admission controller that can be enabled at cluster startup
+it will invoked at pod creation or modification
+It will determine whether pod meets the security policy based on the security context defined with in the pod spec.
+
+pod-security-policie admission controler not enabled by default at 1.16 version
