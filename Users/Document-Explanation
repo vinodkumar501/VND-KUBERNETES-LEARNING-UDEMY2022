@@ -1,0 +1,62 @@
+User Management
+• There are 2 types of users you can create
+• A normal user, which is used to access the user externally
+• e.g. through kubectl
+• This user is not managed using objects
+• A Service user, which is managed by an object in Kubernetes
+• This type of user is used to authenticate within the cluster
+• e.g. from inside a pod, or from a kubelet
+• These credentials are managed like Secrets\
+
+
+-->
+There are multiple authentication strategies for normal users:
+• Client Certificates
+• Bearer Tokens
+• Authentication Proxy
+• HTTP Basic Authentication
+• OpenID
+• Webhooks
+
+-->
+Service Users are using Service Account Tokens
+• They are stored as credentials using Secrets
+• Those Secrets are also mounted in pods to allow communication
+between the services
+• Service Users are specific to a namespace
+• They are created automatically by the API or manually using objects
+• Any API call not authenticated is considered as an anonymous user
+
+-->
+After a normal users authenticates, it will have access to everything
+• To limit access, you need to configure authorization
+• There are again multiple offerings to choose from:
+• AlwaysAllow / AlwaysDeny
+• ABAC (Attribute-Based Access Control)
+• RBAC (Role Based Access Control)
+• Webhook (authorization by remote service)
+
+-->
+After a normal users authenticates, it will have access to everything
+• To limit access, you need to configure authorization
+• There are again multiple offerings to choose from:
+• AlwaysAllow / AlwaysDeny
+• ABAC (Attribute-Based Access Control)
+• RBAC (Role Based Access Control)
+• Webhook (authorization by remote service)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
