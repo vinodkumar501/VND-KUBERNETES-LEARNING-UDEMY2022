@@ -57,3 +57,21 @@ spec:
           limits:
             cpu: 400m
             memory: 1Gi
+            
+            
+            
+#NOTE:
+
+#If you specify requests and limit on namespace , you must specify reourcequota on deployment yaml , if you not specify the resourcequota on deplyment , it will through 
+#an error like below
+
+#kubectl get deploy --namespace myspace
+#NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+#helloworld-deployment   0/3     0            0           2m53s
+
+#kubectl describe rs --namespace myspace 
+#Events:
+#  Type     Reason        Age               From                   Message
+#  ----     ------        ----              ----                   -------
+#  Warning  FailedCreate  85s               replicaset-controller  Error creating: pods "helloworld-deployment-7b4f4bd79b-qz4hd" is forbidden: 
+#failed quota: compute-quota: must specify limits.cpu,limits.memory,requests.cpu,requests.memory
