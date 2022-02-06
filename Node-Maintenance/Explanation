@@ -1,0 +1,25 @@
+It is the Node Controller that is responsible for managing the Node
+objects
+• It assigns IP space to the node when a new node is launched
+• It keeps the node list up to date with the available machines
+• The node controller is also monitoring the health of the node
+• If a node is unhealthy it gets deleted
+• Pods running on the unhealthy node will then get rescheduled
+
+-->
+When adding a new node, the kubelet will attempt to register itself
+• This is called self-registration and is the default behavior
+• It allows you to easily add more nodes to the cluster without making API
+changes yourself
+• A new node object is automatically created with:
+• The metadata (with a name: IP or hostname)
+• Labels (e.g. cloud region / availability zone / instance size)
+• A node also has a node condition (e.g. Ready, OutOfDisk)
+
+-->
+When you want to decommission a node, you want to do it gracefully
+• You drain a node before you shut it down or take it out of the cluster
+• To drain a node, you can use the following command:
+$ kubectl drain nodename --grace-period=600
+• If the node runs pods not managed by a controller, but is just a single pod:
+$ kubectl drain nodename --force
