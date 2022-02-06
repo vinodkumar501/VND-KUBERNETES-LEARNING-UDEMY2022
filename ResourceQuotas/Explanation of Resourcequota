@@ -1,0 +1,122 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: myspace
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-quota
+  namespace: myspace
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: object-quota
+  namespace: myspace
+spec:
+  hard:
+    configmaps: "10"
+    persistentvolumeclaims: "4"
+    replicationcontrollers: "20"
+    secrets: "10"
+    services: "10"
+    services.loadbalancers: "2"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+  namespace: myspace
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name: k8s-demo
+        image: wardviaene/k8s-demo
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+        resources:
+          requests:
+            cpu: 200m
+            memory: 0.5Gi
+          limits:
+            cpu: 400m
+            memory: 1Gi
+
+------------------------------------------------------------------------------------------
+#NOTE:
+
+#If you specify requests and limit on namespace , you must specify reourcequota on deployment yaml , if you not specify the resourcequota on deplyment , it will through 
+#an error like below
+
+#kubectl get deploy --namespace myspace
+#NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+#helloworld-deployment   0/3     0            0           2m53s
+
+#kubectl describe rs --namespace myspace 
+#Events:
+#  Type     Reason        Age               From                   Message
+#  ----     ------        ----              ----                   -------
+#  Warning  FailedCreate  85s               replicaset-controller  Error creating: pods "helloworld-deployment-7b4f4bd79b-qz4hd" is forbidden: 
+#failed quota: compute-quota: must specify limits.cpu,limits.memory,requests.cpu,requests.memory
+
+
+
+#If you enable autoscaling on k8s it will trigger once resource usage is exceeded
+
+#Events:
+# Type     Reason            Age                From                Message
+  ----     ------            ----               ----                -------
+#  Normal   TriggeredScaleUp  40s                cluster-autoscaler  pod triggered scale-up: 
+
+#[{https://www.googleapis.com/compute/v1/projects/itrack-1652018/zones/us-west1-a/instanceGroups/gke-itrack-jenkins-cd-default-pool-6b384e08-grp 3->4 (max: 5)}]
+#  Warning  FailedScheduling  24s (x5 over 47s)  default-scheduler   0/4 nodes are available: 1 node(s) had taint {ToBeDeletedByClusterAutoscaler: 1644130231},
+that the pod didn't tolerate, 3 Insufficient cpu.
+
+
+=======================
+After creating deployment you will get only 2 replicas created rest 1 is not then describe rs
+
+#kubectl get deploy --namespace myspace
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+helloworld-deployment   2/3     2            2           3m16s
+
+#kubectl get rs --namespace myspace
+NAME                               DESIRED   CURRENT   READY   AGE
+helloworld-deployment-6fb5dc7b75   3         2         2       3m48s
+
+
+#kubectl describe rs helloworld-deployment-6fb5dc7b75 --namespace myspace
+
+Replicas:       2 current / 3 desired
+
+Warning  FailedCreate      4m3s                  replicaset-controller  Error creating: pods "helloworld-deployment-6fb5dc7b75-flx7n" is forbidden: 
+exceeded quota: compute-quota, requested: limits.memory=1Gi,requests.memory=512Mi, used: limits.memory=2Gi,requests.memory=1Gi, limited: limits.memory=2Gi,
+requests.memory=1Gi
+
+
+Here its failed to create new pod (3rd) because we have provided to use namespace of (myspace) 
+
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+
+
+
+
