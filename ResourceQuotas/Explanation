@@ -1,3 +1,6 @@
+#https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/
+
+
 When a Kubernetes cluster is used by multiple people or teams,
 resource management becomes more important
 • You want to be able to manage the resources you give to a person or
