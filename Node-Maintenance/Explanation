@@ -23,3 +23,8 @@ When you want to decommission a node, you want to do it gracefully
 $ kubectl drain nodename --grace-period=600
 • If the node runs pods not managed by a controller, but is just a single pod:
 $ kubectl drain nodename --force
+
+
+How to remove objects from node 
+
+kubectl drain node01 --force
